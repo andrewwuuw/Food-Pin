@@ -27,7 +27,12 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         
         self.setHeaderView()
         self.setNavigationBar()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.hidesBarsOnSwipe = false
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
     //MARK: - Table view data source
