@@ -22,8 +22,12 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
+        // 預設 .always，會自動調整 Table view content 的位置 
+        tableView.contentInsetAdjustmentBehavior = .never
         
-        setHeaderView()
+        self.setHeaderView()
+        self.setNavigationBar()
+        
     }
 
     //MARK: - Table view data source
@@ -67,5 +71,11 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         headerView.typeLabel.text = restaurant.type
         headerView.headerImageView.image = UIImage(named: restaurant.image)
         headerView.heartImageView.isHidden = (restaurant.isVisited) ? false : true
+    }
+    
+    private func setNavigationBar() {
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.tintColor = .white
     }
 }

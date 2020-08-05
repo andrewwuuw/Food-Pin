@@ -35,18 +35,13 @@ class RestaurantTableViewController: UITableViewController {
     ]
 
     // MARK: - View controller life cycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         tableView.cellLayoutMarginsFollowReadableWidth = true
-        
-        // Set to use the large title of the navigation bar
-        navigationController?.navigationBar.prefersLargeTitles = true
+        self.setNavigationBar()
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -72,7 +67,6 @@ class RestaurantTableViewController: UITableViewController {
     }
     
     // MARK: - Table view delegate
-    
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, sourceView, completionHandler) in
             // Delete the row from the data source
@@ -142,7 +136,6 @@ class RestaurantTableViewController: UITableViewController {
     
 
     // MARK: - Navigation
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showRestaurantDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
@@ -151,6 +144,17 @@ class RestaurantTableViewController: UITableViewController {
             }
         }
     }
-
+    
+    //MARK: - Private methods
+    private func setNavigationBar() {
+        guard let customFont = UIFont(name: "Rubik-Medium", size: 40.0) else { return }
+        navigationController?.navigationBar.prefersLargeTitles = true
+        // shadow image 是 navigation bar 下方那一條線
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.largeTitleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1),
+            NSAttributedString.Key.font: customFont
+        ]
+    }
     
 }
