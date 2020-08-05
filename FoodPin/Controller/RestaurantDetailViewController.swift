@@ -14,6 +14,8 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     @IBOutlet var headerView: RestaurantHeaderView!
 
     var restaurant = Restaurant()
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
 
     //MARK: - View life cycle
     override func viewDidLoad() {

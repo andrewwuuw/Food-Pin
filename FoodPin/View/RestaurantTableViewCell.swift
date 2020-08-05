@@ -11,7 +11,11 @@ import UIKit
 class RestaurantTableViewCell: UITableViewCell {
 
     @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var locationLabel: UILabel!
+    @IBOutlet var locationLabel: UILabel! {
+        didSet {
+            locationLabel.numberOfLines = 2
+        }
+    }
     @IBOutlet var typeLabel: UILabel!
     @IBOutlet var thumbnailImageView: UIImageView!
     @IBOutlet var heartImageView: UIImageView!
