@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet var mapView: MKMapView!
     
@@ -17,7 +17,31 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadMap()
+        mapView.delegate = self
+        self.loadMap()
+        mapView.showsCompass = true
+        mapView.showsScale = true
+        mapView.showsTraffic = true
+    }
+    
+    //MARK: - map view delegate
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let identifier = "myMarker"
+        
+        // 如果餐廳座標跟使用者現在的座標位置相同
+        if annotation.isKind(of: MKUserLocation.self) {
+            return nil
+        }
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
+        if annotationView == nil {
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+        }
+        
+        annotationView?.glyphText = "🤣"
+        annotationView?.markerTintColor = .orange
+        
+        return annotationView
     }
     
     //MARK: - Private methods

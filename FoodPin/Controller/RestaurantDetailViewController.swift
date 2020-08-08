@@ -12,6 +12,9 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
 
     @IBOutlet var tableView: UITableView!
     @IBOutlet var headerView: RestaurantHeaderView!
+    @IBAction func close(segue: UIStoryboardSegue) {
+        dismiss(animated: true, completion: nil)
+    }
 
     var restaurant = Restaurant()
 
@@ -70,14 +73,14 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: RestaurantDetailSeparatorCell.self),
                                                      for: indexPath) as! RestaurantDetailSeparatorCell
-            
+
             cell.titleLabel?.text = "How to get there"
             cell.selectionStyle = .none
             return cell
         case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: RestaurantDetailMapCell.self),
                                                      for: indexPath) as! RestaurantDetailMapCell
-            
+
             cell.configure(location: restaurant.location)
             cell.selectionStyle = .none
             return cell
@@ -85,15 +88,20 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
             fatalError("Failed to instantiate the table view cell for detail view controller")
         }
     }
-    
+
     //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showMap" {
+        switch segue.identifier {
+        case "showMap":
             let destinationController = segue.destination as! MapViewController
             destinationController.restaurant = restaurant
+        case "showReview":
+            let destinationController = segue.destination as! ReviewViewController
+            destinationController.restaurant = restaurant
+        default:
+            fatalError("* There is no any segue.")
         }
     }
-    
 
     //MARK: - Private methods
     private func setHeaderView() {
