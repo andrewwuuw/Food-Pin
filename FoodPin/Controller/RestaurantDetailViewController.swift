@@ -85,6 +85,15 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
             fatalError("Failed to instantiate the table view cell for detail view controller")
         }
     }
+    
+    //MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMap" {
+            let destinationController = segue.destination as! MapViewController
+            destinationController.restaurant = restaurant
+        }
+    }
+    
 
     //MARK: - Private methods
     private func setHeaderView() {
