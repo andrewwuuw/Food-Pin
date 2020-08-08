@@ -12,6 +12,7 @@ class ReviewViewController: UIViewController {
     
     @IBOutlet var backgroundImageView: UIImageView!
     @IBOutlet var rateButtons: [UIButton]!
+    @IBOutlet var closeButton: UIButton!
     
     var restaurant = Restaurant()
     
@@ -20,14 +21,20 @@ class ReviewViewController: UIViewController {
         super.viewDidLoad()
         self.setBackgroundImage()
         self.setBlurEffet(on: backgroundImageView)
+        
+        self.moveCloseButtonUpTransForm()
         self.moveRateButtonRightTransFrom()
+        
+        self.hideCloseButton()
         self.hideAllRateButtons()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.animatedlyShowRateButton()
+        self.animatedlyShowCloseButton()
     }
     
+    // 畫面尺寸改變時（旋轉螢幕），重新定義 frame 的大小
     override func viewDidLayoutSubviews() {
         self.blurEffectView.frame = self.view.bounds
     }
@@ -49,12 +56,19 @@ class ReviewViewController: UIViewController {
         })
     }
     
+    private func hideCloseButton() { closeButton.alpha = 0 }
+    
     private func moveRateButtonRightTransFrom() {
         let moveRightTransForm = CGAffineTransform(translationX: 600, y: 0)
         let scaleUpTransFrom = CGAffineTransform(scaleX: 5, y: 5)
         rateButtons.forEach({ rateButton in
             rateButton.transform = scaleUpTransFrom.concatenating(moveRightTransForm)
         })
+    }
+    
+    private func moveCloseButtonUpTransForm() {
+        let moveUpTransForm = CGAffineTransform(translationX: 0, y: 600)
+        closeButton.transform = moveUpTransForm
     }
 
     private func animatedlyShowRateButton() {
@@ -70,5 +84,12 @@ class ReviewViewController: UIViewController {
                                delayTime += 0.05
                            }, completion: nil)
         }
+    }
+    
+    private func animatedlyShowCloseButton() {
+        UIView.animate(withDuration: 1, animations: {
+            self.closeButton.transform = .identity
+            self.closeButton.alpha = 1
+        })
     }
 }
