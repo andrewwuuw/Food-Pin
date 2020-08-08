@@ -56,7 +56,7 @@ class ReviewViewController: UIViewController {
             rateButton.transform = scaleUpTransFrom.concatenating(moveRightTransForm)
         })
     }
-    
+
     private func animatedlyShowRateButton() {
         let durationTime: TimeInterval = 0.4
         var delayTime: TimeInterval = 0.1
@@ -65,10 +65,10 @@ class ReviewViewController: UIViewController {
                            delay: delayTime,
                            options: [],
                            animations: {
-                self.rateButtons[index].transform = .identity
-                self.rateButtons[index].alpha = 1.0
-                delayTime += 0.05
-            }, completion: nil)
+                               self.rateButtons[index].transform = .identity
+                               self.rateButtons[index].alpha = 1.0
+                               delayTime += 0.05
+                           }, completion: nil)
         }
     }
 }

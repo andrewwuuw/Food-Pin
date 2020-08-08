@@ -127,14 +127,21 @@
                                     <rect key="frame" x="0.0" y="0.0" width="812" height="350"/>
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UFH-C3-ohq" userLabel="Rating Image View">
+                                    <rect key="frame" x="712" y="286" width="50" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="N5F-aR-Umx"/>
+                                        <constraint firstAttribute="width" constant="50" id="ROZ-JR-vNv"/>
+                                    </constraints>
+                                </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMa-Gi-5eA">
-                                    <rect key="frame" x="20.000000000000007" y="271.33333333333331" width="96.666666666666686" height="41.666666666666686"/>
+                                    <rect key="frame" x="50.000000000000007" y="271.33333333333331" width="96.666666666666686" height="41.666666666666686"/>
                                     <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="35"/>
                                     <color key="textColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6LR-el-NNx">
-                                    <rect key="frame" x="20" y="316" width="100" height="20"/>
+                                    <rect key="frame" x="50" y="316" width="100" height="20"/>
                                     <color key="backgroundColor" red="0.90588235294117647" green="0.29803921568627451" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="4kr-Mx-fnl"/>
@@ -145,7 +152,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mUF-Fi-cBo" userLabel="Heart Image View">
-                                    <rect key="frame" x="128" y="318.66666666666669" width="15" height="15"/>
+                                    <rect key="frame" x="158" y="318.66666666666669" width="15" height="15"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="15" id="06L-co-pNo"/>
                                         <constraint firstAttribute="width" constant="15" id="jIr-7i-1FV"/>
@@ -167,13 +174,20 @@
                                 <constraint firstItem="6LR-el-NNx" firstAttribute="top" secondItem="CMa-Gi-5eA" secondAttribute="bottom" constant="3" id="ji8-X7-nVf"/>
                                 <constraint firstAttribute="bottom" secondItem="6LR-el-NNx" secondAttribute="bottom" constant="14" id="rQR-fJ-cr0"/>
                                 <constraint firstAttribute="trailing" secondItem="lrJ-IE-cqW" secondAttribute="trailing" id="sKa-TW-wmX"/>
-                                <constraint firstItem="6LR-el-NNx" firstAttribute="leading" secondItem="uhg-PW-boP" secondAttribute="leading" constant="20" id="yHq-oi-tRz"/>
+                                <constraint firstAttribute="trailing" secondItem="UFH-C3-ohq" secondAttribute="trailing" constant="10" id="utC-1N-JbF">
+                                    <variation key="heightClass=compact" constant="50"/>
+                                </constraint>
+                                <constraint firstItem="6LR-el-NNx" firstAttribute="leading" secondItem="uhg-PW-boP" secondAttribute="leading" constant="20" id="yHq-oi-tRz">
+                                    <variation key="heightClass=compact" constant="50"/>
+                                </constraint>
                                 <constraint firstAttribute="bottom" secondItem="D1E-De-irI" secondAttribute="bottom" id="zBX-4I-LDL"/>
+                                <constraint firstItem="6LR-el-NNx" firstAttribute="bottom" secondItem="UFH-C3-ohq" secondAttribute="bottom" id="zH0-zG-VF4"/>
                             </constraints>
                             <connections>
                                 <outlet property="headerImageView" destination="lrJ-IE-cqW" id="JpU-19-gKW"/>
                                 <outlet property="heartImageView" destination="mUF-Fi-cBo" id="Rt5-kQ-0XL"/>
                                 <outlet property="nameLabel" destination="CMa-Gi-5eA" id="mY0-Ad-tnM"/>
+                                <outlet property="ratingImageView" destination="UFH-C3-ohq" id="Inx-uc-mfO"/>
                                 <outlet property="typeLabel" destination="6LR-el-NNx" id="bBa-A5-DlF"/>
                             </connections>
                         </view>
@@ -211,7 +225,7 @@
                                 <rect key="frame" x="0.0" y="378" width="812" height="44.333332061767578"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FZ6-7r-a5S" id="XGf-2L-jg1">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44.333332061767578"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="812" height="44.333332061767578"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CF7-Oh-Bai">
@@ -249,7 +263,7 @@
                                 <rect key="frame" x="0.0" y="422.33333206176758" width="812" height="43.333332061767578"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5aH-jC-Woc" id="bB9-kD-DYx">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.333332061767578"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="812" height="43.333332061767578"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMM-r7-CAx">
@@ -274,7 +288,7 @@
                                 <rect key="frame" x="0.0" y="465.66666412353516" width="812" height="49.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pmx-7J-OMw" id="VhU-pQ-Xak">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="49.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="812" height="49.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="YTG-WP-eke">
@@ -312,7 +326,7 @@
                                 <rect key="frame" x="0.0" y="515.33333206176758" width="812" height="215"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BBO-wX-ybS" id="t1k-XH-5Wk">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="215"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="812" height="215"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="soE-HY-mDD">
@@ -432,6 +446,9 @@
                                         <variation key="heightClass=compact">
                                             <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="1"/>
                                         </variation>
+                                        <connections>
+                                            <segue destination="kbm-CP-iPC" kind="unwind" identifier="love" unwindAction="rateRestaurantWithSegue:" id="h9E-Uh-tqZ"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fpf-GU-rpP">
                                         <rect key="frame" x="131" y="10" width="81" height="83"/>
@@ -443,6 +460,9 @@
                                         <variation key="heightClass=compact">
                                             <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="1"/>
                                         </variation>
+                                        <connections>
+                                            <segue destination="kbm-CP-iPC" kind="unwind" identifier="cool" unwindAction="rateRestaurantWithSegue:" id="Kbj-s9-K9U"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pd7-BU-Z0X">
                                         <rect key="frame" x="262" y="8.6666666666666572" width="81" height="86"/>
@@ -454,6 +474,9 @@
                                         <variation key="heightClass=compact">
                                             <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="1"/>
                                         </variation>
+                                        <connections>
+                                            <segue destination="kbm-CP-iPC" kind="unwind" identifier="happy" unwindAction="rateRestaurantWithSegue:" id="99B-wG-qgo"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JMo-nx-ViC">
                                         <rect key="frame" x="393" y="8" width="81" height="87"/>
@@ -465,6 +488,9 @@
                                         <variation key="heightClass=compact">
                                             <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="1"/>
                                         </variation>
+                                        <connections>
+                                            <segue destination="kbm-CP-iPC" kind="unwind" identifier="sad" unwindAction="rateRestaurantWithSegue:" id="8Xq-8C-Zb9"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KIY-Ro-2Jg">
                                         <rect key="frame" x="524" y="0.0" width="81" height="103"/>
@@ -476,6 +502,9 @@
                                         <variation key="heightClass=compact">
                                             <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="1"/>
                                         </variation>
+                                        <connections>
+                                            <segue destination="kbm-CP-iPC" kind="unwind" identifier="angry" unwindAction="rateRestaurantWithSegue:" id="Xmh-rF-609"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <variation key="heightClass=compact" alignment="center" axis="horizontal" spacing="50"/>

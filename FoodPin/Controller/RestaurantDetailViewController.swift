@@ -16,6 +16,16 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         dismiss(animated: true, completion: nil)
     }
 
+    @IBAction func rateRestaurant(segue: UIStoryboardSegue) {
+        dismiss(animated: true, completion: {
+            guard let rating = segue.identifier else { return }
+            self.restaurant.rating = rating
+            self.headerView.ratingImageView.image = UIImage(named: rating)
+            self.scaleRatingImageViewUpTransFrom()
+            self.animatedlyShowRatingImageView()
+        })
+    }
+
     var restaurant = Restaurant()
 
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
@@ -109,11 +119,26 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         headerView.typeLabel.text = restaurant.type
         headerView.headerImageView.image = UIImage(named: restaurant.image)
         headerView.heartImageView.isHidden = (restaurant.isVisited) ? false : true
+        self.headerView.ratingImageView.image = UIImage(named: restaurant.rating)
     }
 
     private func setNavigationBar() {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.tintColor = .white
+    }
+
+    private func scaleRatingImageViewUpTransFrom() {
+        let scaleUpTransFrom = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        self.headerView.ratingImageView.transform = scaleUpTransFrom
+        self.headerView.ratingImageView.alpha = 0
+    }
+
+    private func animatedlyShowRatingImageView() {
+        UIView.animate(withDuration: 0.4,
+                       animations: {
+                           self.headerView.ratingImageView.transform = .identity
+                           self.headerView.ratingImageView.alpha = 1
+                       })
     }
 }
