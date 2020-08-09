@@ -161,7 +161,7 @@ class RestaurantTableViewController: UITableViewController {
         // shadow image 是 navigation bar 下方那一條線
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.largeTitleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor(red: 231 / 255, green: 76 / 255, blue: 60 / 255, alpha: 1),
+            NSAttributedString.Key.foregroundColor: UIColor(red: 231, green: 76, blue: 60),
             NSAttributedString.Key.font: customFont
         ]
     }

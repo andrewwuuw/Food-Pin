@@ -55,6 +55,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>你需要提供相機的權限，以增加圖片</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>你需要提供相片圖庫的權限，以增加圖片</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

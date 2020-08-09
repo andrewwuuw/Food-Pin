@@ -13,6 +13,7 @@ class NewRestaurantController: UITableViewController, UITextFieldDelegate, UITex
     //MARK: - life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setNavigationBar()
     }
 
     //MARK: - UI
@@ -58,5 +59,57 @@ class NewRestaurantController: UITableViewController, UITextFieldDelegate, UITex
         nextTextField.becomeFirstResponder()
         return true
     }
+    
+    //MARK: - table view delegate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            let photoSourceRequestController = UIAlertController(title: "",
+                                                                 message: "選擇您的相片來源",
+                                                                 preferredStyle: .actionSheet)
+            
+            let cameraAction = UIAlertAction(title: "相機", style: .default, handler: { (action) in
+                // 詢問相片存取的權限
+                if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                    let imagePicker = UIImagePickerController()
+                    imagePicker.allowsEditing = false
+                    imagePicker.sourceType = .camera
+                    
+                    self.present(imagePicker, animated: true, completion: nil)
+                }
+            })
+            
+            let photoLibraryAction = UIAlertAction(title: "相片圖庫", style: .default, handler: { (action) in
+                if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                    let imagePicker = UIImagePickerController()
+                    imagePicker.allowsEditing = false
+                    imagePicker.sourceType = .photoLibrary
+                    
+                    self.present(imagePicker, animated: true, completion: nil)
+                }
+            })
+            
+            photoSourceRequestController.addAction(cameraAction)
+            photoSourceRequestController.addAction(photoLibraryAction)
+            
+            if let popCoverController = photoSourceRequestController.popoverPresentationController,
+                let cell = tableView.cellForRow(at: indexPath) {
+                popCoverController.sourceView = cell
+                popCoverController.sourceRect = cell.bounds
+            }
+            
+            present(photoSourceRequestController, animated: true, completion: nil)
+        }
+    }
 
+    //MARK: - Private methods
+    private func setNavigationBar() {
+        guard let customFont = UIFont(name: "Rubik-Medium", size: 35.0) else { return }
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.largeTitleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor(red: 231, green: 76, blue: 60),
+            NSAttributedString.Key.font: customFont
+        ]
+    }
+    
 }
