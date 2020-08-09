@@ -756,6 +756,12 @@
                                 <segue destination="sNS-d8-ccz" kind="unwind" unwindAction="undoToHomeWithSegue:" id="Ojs-ko-idb"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="checkmark" catalog="system" id="up1-m7-sti">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="saveRestaurant:" destination="ouV-xB-pEF" id="17a-7F-LTY"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addressTextField" destination="KS9-rU-eqJ" id="g2c-7O-5aM"/>
@@ -792,6 +798,7 @@
     </scenes>
     <resources>
         <image name="angry" width="78" height="103"/>
+        <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="cool" width="78" height="83"/>
         <image name="happy" width="78" height="86"/>
         <image name="heart-tick" width="22" height="21"/>
