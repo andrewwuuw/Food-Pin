@@ -14,7 +14,7 @@ class ReviewViewController: UIViewController {
     @IBOutlet var rateButtons: [UIButton]!
     @IBOutlet var closeButton: UIButton!
     
-    var restaurant = Restaurant()
+    var restaurant: RestaurantMO!
     
     //MARK: - lif cycle
     override func viewDidLoad() {
@@ -43,7 +43,9 @@ class ReviewViewController: UIViewController {
     private let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     
     private func setBackgroundImage() {
-        backgroundImageView.image = UIImage(named: restaurant.image)
+        if let restaurantImage = restaurant.image {
+            backgroundImageView.image = UIImage(data: restaurantImage as Data)
+        }
     }
     
     private func setBlurEffet(on view: UIImageView) {
