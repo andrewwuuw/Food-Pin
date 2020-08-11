@@ -77,7 +77,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: RestaurantDescriptionCell.self),
                                                      for: indexPath) as! RestaurantDescriptionCell
 
-            cell.descriptionLabel.text = restaurant.description
+            cell.descriptionLabel.text = restaurant.summary
             cell.selectionStyle = .none
             return cell
         case 3:
@@ -118,14 +118,16 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
 
     //MARK: - Private methods
     private func setHeaderView() {
-        guard let restaurantImage = restaurant.image else { return }
-        guard let restaurantRating = restaurant.rating else { return }
-        
         headerView.nameLabel.text = restaurant.name
         headerView.typeLabel.text = restaurant.type
-        headerView.headerImageView.image = UIImage(data: restaurantImage as Data)
         headerView.heartImageView.isHidden = (restaurant.isVisited) ? false : true
-        self.headerView.ratingImageView.image = UIImage(named: restaurantRating)
+        if let restaurantImage = restaurant.image {
+            headerView.headerImageView.image = UIImage(data: restaurantImage as Data)
+        }
+        
+        if let restaurantRating = restaurant.rating {
+            headerView.ratingImageView.image = UIImage(named: restaurantRating)
+        }
     }
 
     private func setNavigationBar() {
