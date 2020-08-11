@@ -19,10 +19,10 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     @IBAction func rateRestaurant(segue: UIStoryboardSegue) {
         dismiss(animated: true, completion: {
             guard let rating = segue.identifier else { return }
-            self.restaurant.rating = rating
             self.headerView.ratingImageView.image = UIImage(named: rating)
             self.scaleRatingImageViewUpTransFrom()
             self.animatedlyShowRatingImageView()
+            self.saveRating(rating)
         })
     }
 
@@ -148,5 +148,12 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
                            self.headerView.ratingImageView.transform = .identity
                            self.headerView.ratingImageView.alpha = 1
                        })
+    }
+    
+    private func saveRating(_ rating: String) {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            self.restaurant.rating = rating
+            appDelegate.saveContext()
+        }
     }
 }
