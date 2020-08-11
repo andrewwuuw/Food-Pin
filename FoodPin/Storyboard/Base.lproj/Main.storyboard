@@ -114,12 +114,12 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oAP-f4-g1X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="Pzt-Qh-PNF">
+                <view contentMode="scaleAspectFill" id="Pzt-Qh-PNF">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty" translatesAutoresizingMaskIntoConstraints="NO" id="oRc-a5-G0z">
-                            <rect key="frame" x="28" y="143.99999999999997" width="358" height="398.33333333333326"/>
+                            <rect key="frame" x="40" y="144.00000000000003" width="334" height="371.66666666666674"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="oRc-a5-G0z" secondAttribute="height" multiplier="80:89" id="NVr-6P-21G"/>
                             </constraints>
@@ -127,8 +127,8 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
-                        <constraint firstItem="CZ6-ga-WQD" firstAttribute="trailing" secondItem="oRc-a5-G0z" secondAttribute="trailing" constant="28" id="RQE-N8-Oe5"/>
-                        <constraint firstItem="oRc-a5-G0z" firstAttribute="leading" secondItem="CZ6-ga-WQD" secondAttribute="leading" constant="28" id="coa-Tu-BhZ"/>
+                        <constraint firstItem="CZ6-ga-WQD" firstAttribute="trailing" secondItem="oRc-a5-G0z" secondAttribute="trailing" constant="40" id="RQE-N8-Oe5"/>
+                        <constraint firstItem="oRc-a5-G0z" firstAttribute="leading" secondItem="CZ6-ga-WQD" secondAttribute="leading" constant="40" id="coa-Tu-BhZ"/>
                         <constraint firstItem="oRc-a5-G0z" firstAttribute="top" secondItem="CZ6-ga-WQD" secondAttribute="top" constant="100" id="vJJ-YD-loJ"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="CZ6-ga-WQD"/>

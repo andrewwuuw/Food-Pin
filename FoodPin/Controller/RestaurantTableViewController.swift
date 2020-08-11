@@ -7,14 +7,16 @@
 //
 
 import UIKit
+import CoreData
 
-class RestaurantTableViewController: UITableViewController {
+class RestaurantTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
     var restaurants: [RestaurantMO] = []
-    
+    var fetchResultController: NSFetchedResultsController<RestaurantMO>!
+
     //MARK: - UI
     @IBOutlet var emptyImageView: UIImageView!
-    
+
     //MARK: - Actions
     @IBAction func undoToHome(segue: UIStoryboardSegue) {
         dismiss(animated: true, completion: nil)
@@ -27,6 +29,8 @@ class RestaurantTableViewController: UITableViewController {
         tableView.cellLayoutMarginsFollowReadableWidth = true
         tableView.backgroundView = emptyImageView
         tableView.backgroundView?.isHidden = true
+
+        self.fetchResult()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -67,9 +71,12 @@ class RestaurantTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, sourceView, completionHandler) in
             // Delete the row from the data source
-            self.restaurants.remove(at: indexPath.row)
-
-            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                let context = appDelegate.persistentContainer.viewContext
+                let restaurantToDelegate = self.fetchResultController.object(at: indexPath)
+                context.delete(restaurantToDelegate)
+                appDelegate.saveContext()
+            }
 
             // Call completion handler with true to indicate
             completionHandler(true)
@@ -131,6 +138,37 @@ class RestaurantTableViewController: UITableViewController {
         return swipeConfiguration
     }
 
+    //MARK: - fetch result delegate
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            if let newIndexPath = newIndexPath {
+                tableView.insertRows(at: [newIndexPath], with: .fade)
+            }
+        case .delete:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        case .update:
+            if let indexPath = indexPath {
+                tableView.reloadRows(at: [indexPath], with: .fade)
+            }
+        default:
+            tableView.reloadData()
+        }
+        
+        if let fetchObjects = controller.fetchedObjects {
+            restaurants = fetchObjects as! [RestaurantMO]
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -152,6 +190,33 @@ class RestaurantTableViewController: UITableViewController {
             NSAttributedString.Key.foregroundColor: UIColor(red: 231, green: 76, blue: 60),
             NSAttributedString.Key.font: customFont
         ]
+    }
+
+    private func fetchResult() {
+        let fetchRequest: NSFetchRequest<RestaurantMO> = RestaurantMO.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            let context = appDelegate.persistentContainer.viewContext
+            fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                                               managedObjectContext: context,
+                                                               sectionNameKeyPath: nil,
+                                                               cacheName: nil)
+
+            fetchResultController.delegate = self
+
+            do {
+                try fetchResultController.performFetch()
+                if let fetchObjects = fetchResultController.fetchedObjects {
+                    restaurants = fetchObjects
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+
+
+        }
     }
 
 }

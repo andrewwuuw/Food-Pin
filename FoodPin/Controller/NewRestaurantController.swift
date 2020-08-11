@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class NewRestaurantController:
     UITableViewController,
@@ -16,6 +17,8 @@ class NewRestaurantController:
     UINavigationControllerDelegate
 {
 
+    var restaurant: RestaurantMO!
+    
     //MARK: - life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,28 +28,24 @@ class NewRestaurantController:
 
     //MARK: - Actions
     @IBAction func saveRestaurant(_ sender: UIBarButtonItem) {
-        guard let nameText = self.nameTextField.text,
-            let typeText = self.typeTextField.text,
-            let addressText = self.addressTextField.text,
-            let phoneText = self.phoneTextField.text,
-            let descriptionText = self.descriptionTextView.text else { return }
-
-        if (nameText.isEmpty || typeText.isEmpty || addressText.isEmpty || phoneText.isEmpty || descriptionText.isEmpty) {
-            let alertController = UIAlertController(title: "Opps", message: "你還有資料沒填完！", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .default))
-            self.present(alertController, animated: true, completion: nil)
-            return
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        restaurant = RestaurantMO(context: appDelegate.persistentContainer.viewContext)
+        restaurant.name = nameTextField.text
+        restaurant.type = typeTextField.text
+        restaurant.location = addressTextField.text
+        restaurant.phone = phoneTextField.text
+        restaurant.summary = descriptionTextView.text
+        restaurant.isVisited = false
+        
+        if let restaurantImage = photoImageView.image {
+            restaurant.image = restaurantImage.pngData()
         }
         
+        print("* Save data to comtext ...")
+        appDelegate.saveContext()
+        
         dismiss(animated: true, completion: {
-            let outputString = """
-                                Name: \(nameText)
-                                Type: \(typeText)
-                                Location: \(addressText)
-                                Phone: \(phoneText)
-                                Description: \(descriptionText)
-                                """
-            print(outputString)
+            print("* Save!")
 
         })
     }
