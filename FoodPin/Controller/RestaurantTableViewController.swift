@@ -32,15 +32,10 @@ class RestaurantTableViewController:
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavigationBar()
+        self.setSearchBar()
         tableView.cellLayoutMarginsFollowReadableWidth = true
         tableView.backgroundView = emptyImageView
         tableView.backgroundView?.isHidden = true
-        
-        searchController = UISearchController(searchResultsController: nil)
-        self.navigationItem.searchController = searchController
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-
         self.fetchResult()
     }
 
@@ -244,8 +239,20 @@ class RestaurantTableViewController:
     private func filterContent(for searchText: String) {
         searchResults = restaurants.filter({ (restaurant) -> Bool in
             guard let name = restaurant.name else { fatalError("Something went wrong!") }
-            return name.localizedCaseInsensitiveContains(searchText)
+            guard let locaion = restaurant.location else { fatalError("Something went wrong!") }
+            return name.localizedCaseInsensitiveContains(searchText) || locaion.localizedStandardContains(searchText)
         })
+    }
+    
+    private func setSearchBar() {
+        searchController = UISearchController(searchResultsController: nil)
+        tableView.tableHeaderView = searchController.searchBar
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "請輸入想搜尋的餐廳"
+        searchController.searchBar.barTintColor = .white
+        searchController.searchBar.backgroundImage = UIImage()
+        searchController.searchBar.tintColor = UIColor(red: 231, green: 76, blue: 68)
     }
 
 }
