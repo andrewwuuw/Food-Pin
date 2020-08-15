@@ -21,6 +21,7 @@
 		6586618124DDA16B00494E6A /* RestaurantDetailSeparatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6586618024DDA16B00494E6A /* RestaurantDetailSeparatorCell.swift */; };
 		6586618324DDA20700494E6A /* RestaurantDetailMapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6586618224DDA20700494E6A /* RestaurantDetailMapCell.swift */; };
 		6586618724DE2DAD00494E6A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6586618624DE2DAD00494E6A /* MapViewController.swift */; };
+		65AAFBB224E778FD00E47CB3 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65AAFBB124E778FD00E47CB3 /* Onboarding.storyboard */; };
 		65D749EE24E02F6000D89C99 /* FoodPin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 65D749EC24E02F6000D89C99 /* FoodPin.xcdatamodeld */; };
 		65EEBB7B24D6AE0A001419A7 /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 65EEBB7124D6AE09001419A7 /* Rubik-Black.ttf */; };
 		65EEBB7C24D6AE0A001419A7 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 65EEBB7224D6AE09001419A7 /* Rubik-Bold.ttf */; };
@@ -58,6 +59,7 @@
 		6586618024DDA16B00494E6A /* RestaurantDetailSeparatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailSeparatorCell.swift; sourceTree = "<group>"; };
 		6586618224DDA20700494E6A /* RestaurantDetailMapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailMapCell.swift; sourceTree = "<group>"; };
 		6586618624DE2DAD00494E6A /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		65AAFBB124E778FD00E47CB3 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		65D749ED24E02F6000D89C99 /* FoodPin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FoodPin.xcdatamodel; sourceTree = "<group>"; };
 		65EEBB7124D6AE09001419A7 /* Rubik-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Black.ttf"; sourceTree = "<group>"; };
 		65EEBB7224D6AE09001419A7 /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 			children = (
 				F4C3332F2365F91600D3A311 /* Main.storyboard */,
 				F4C333342365F91800D3A311 /* LaunchScreen.storyboard */,
+				65AAFBB124E778FD00E47CB3 /* Onboarding.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				65EEBB8224D6AE0A001419A7 /* Rubik-Italic.ttf in Resources */,
 				65EEBB7C24D6AE0A001419A7 /* Rubik-Bold.ttf in Resources */,
 				65EEBB8124D6AE0A001419A7 /* Rubik-MediumItalic.ttf in Resources */,
+				65AAFBB224E778FD00E47CB3 /* Onboarding.storyboard in Resources */,
 				65EEBB8024D6AE0A001419A7 /* Rubik-BoldItalic.ttf in Resources */,
 				65EEBB7F24D6AE0A001419A7 /* Rubik-Medium.ttf in Resources */,
 			);
