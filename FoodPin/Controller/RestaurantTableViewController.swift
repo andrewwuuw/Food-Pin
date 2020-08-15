@@ -39,6 +39,7 @@ class RestaurantTableViewController:
         searchController = UISearchController(searchResultsController: nil)
         self.navigationItem.searchController = searchController
         searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
 
         self.fetchResult()
     }
@@ -64,16 +65,14 @@ class RestaurantTableViewController:
 
         let cellIdentifier = "datacell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! RestaurantTableViewCell
-
-        //FIXME: - 搜尋不到項目
-        let restaurant = (searchController.isActive) ? searchResults[indexPath.row] : restaurants[indexPath.row]
+        let currentRestaurants = (searchController.isActive) ? searchResults : restaurants
         
         // Configure the cell...
-        cell.nameLabel.text = restaurants[indexPath.row].name
-        cell.locationLabel.text = restaurants[indexPath.row].location
-        cell.typeLabel.text = restaurants[indexPath.row].type
-        cell.heartImageView.isHidden = restaurants[indexPath.row].isVisited ? false : true
-        if let thumbnailImage = restaurants[indexPath.row].image {
+        cell.nameLabel.text = currentRestaurants[indexPath.row].name
+        cell.locationLabel.text = currentRestaurants[indexPath.row].location
+        cell.typeLabel.text = currentRestaurants[indexPath.row].type
+        cell.heartImageView.isHidden = currentRestaurants[indexPath.row].isVisited ? false : true
+        if let thumbnailImage = currentRestaurants[indexPath.row].image {
             cell.thumbnailImageView.image = UIImage(data: thumbnailImage as Data)
         }
 
@@ -149,6 +148,10 @@ class RestaurantTableViewController:
 
 
         return swipeConfiguration
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return (searchController.isActive) ? false : true
     }
 
     //MARK: - fetch result delegate
